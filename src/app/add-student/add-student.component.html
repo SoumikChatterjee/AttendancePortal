@@ -1,0 +1,74 @@
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-lg-12 mt-4">
+            <h1 style="text-align: center; color: black;">
+                Add Student Form
+            </h1>
+        </div>
+    </div>
+    <form [formGroup]="studentInput">
+        <div class="row mt-4" style="display: flex; flex-direction: column; align-content: center;">
+            <div class="col-lg-10 mt-4">
+                <label for="" style="color: black;">
+                    Student Name
+                </label>
+                <input type="text" formControlName="studentName"
+                    class="form-control ng-untouched ng-pristine ng-invalid">
+                <!---->
+
+                <!-- <div *ngIf="studentInput.get('studentName')?.hasError('required') &&studentInput.get('studentName')?.touched">
+                    <p>Please enter student name</p>
+                </div> -->
+
+                <div *ngIf="studentInput.get('studentName')?.invalid && ( studentInput.get('studentName')?.touched)">
+                    <div *ngIf="studentInput.get('studentName')?.hasError('required')">
+                        <p>Please enter a student name</p>
+                    </div>
+                    <div *ngIf="studentInput.get('studentName')?.hasError('pattern')">
+                        <p>Please enter a valid name</p>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-lg-10 mt-4">
+                <label for="" style="color: black;">Student Email
+                </label>
+                <input type="email" formControlName="studentEmail"
+                    class="form-control ng-untouched ng-pristine ng-invalid">
+                <!---->
+                <div *ngIf="studentInput.get('studentEmail')?.invalid && ( studentInput.get('studentEmail')?.touched)">
+                    <div *ngIf="studentInput.get('studentEmail')?.hasError('required')">
+                        <p>Please enter a student email address.</p>
+                    </div>
+                    <div *ngIf="studentInput.get('studentEmail')?.hasError('email')">
+                        <p>Please enter a valid email address.</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-10 mt-4">
+                <label for="" style="color: black;">Phone Number
+                </label>
+                <input type="text" formControlName="phoneNumber"
+                    class="form-control ng-untouched ng-pristine ng-invalid">
+                <!---->
+
+                <div *ngIf="studentInput.get('phoneNumber')?.invalid && ( studentInput.get('phoneNumber')?.touched)">
+                    <div *ngIf="studentInput.get('phoneNumber')?.hasError('required')">
+                        <p>Please enter a student phone number.</p>
+                    </div>
+                    <div *ngIf="studentInput.get('phoneNumber')?.hasError('pattern')||studentInput.get('phoneNumber')?.hasError('minlength') || studentInput.get('phoneNumber')?.hasError('maxlength')">
+                        <p>Please enter a valid phone number.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+    <div class="row mt-3">
+        <div class="col-lg-12" style="text-align: center;">
+            <button class="btn btn-primary" (click)="buttonPressed()" [disabled]="!studentInput.valid">Submit</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" id="sidebar" style="width: 280px; height: 100vh;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <svg class="bi me-2" width="40" height="32">
+            <use xlink:href="#bootstrap"></use>
+        </svg>
+        <span class="fs-3" style="font-weight: bolder;">Student Manangement</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto gap-2">
+        <li (click)="this.as.pointer=1">
+            <a routerLink="student-list" class="nav-link text-white " [ngClass]="{'active':this.as.pointer===1}"
+                aria-current="page">
+
+                <div class="d-flex gap-2 align-items-center justify-content-start">
+                    <i class="fas fa-folder"></i>
+                    Dashboard
+                </div>
+            </a>
+        </li>
+        <li (click)="this.as.pointer=2">
+            <a class="nav-link text-white" routerLink="add-student" [ngClass]="{'active':this.as.pointer===2}">
+
+                <div class="d-flex gap-2 align-items-center justify-content-start">
+                    <i class="fas fa-folder"></i>
+                    Add Student
+                </div>
+            </a>
+        </li>
+        <li (click)="this.as.pointer=3">
+            <a class="nav-link text-white" routerLink="mark-attendance" [ngClass]="{'active':this.as.pointer===3}">
+                <div class="d-flex gap-2 align-items-center justify-content-start">
+                    <i class="fas fa-folder"></i>
+                    Mark Attendance
+                </div>
+            </a>
+        </li>
+        <li (click)="this.as.pointer=4">
+            <a class="nav-link text-white" routerLink="charts" [ngClass]="{'active':this.as.pointer===4}">
+
+                <div class="d-flex gap-2 align-items-center justify-content-start">
+                    <i class="fas fa-folder"></i>Charts
+                </div>
+            </a>
+        </li>
+    </ul>
+    <hr>
+    <div class="dropdown">
+        <a class="d-flex align-items-center text-white text-decoration-none" aria-expanded="false">
+            <img src="https://i.pinimg.com/736x/36/fc/3f/36fc3ffc47a2f66c493e3ddf2aab3f62.jpg" alt="" width="32"
+                height="32" class="rounded-circle me-2">
+            <strong>4g0.5mm</strong>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+button{
+    border: none;
+    margin: none;
+    color: red;
+    background-color: transparent;
+}
+.disabled {
+    color: #aaaaaa;
+    cursor: ar;
+    button{
+        color: #aaaaaa;
+    }
+  }
