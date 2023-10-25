@@ -1,13 +1,20 @@
 button{
     border: none;
     margin: none;
-    color: red;
     background-color: transparent;
+    margin: 0 7px;
+}
+#delete{
+    color: red;
+}
+#delete:disabled{
+    color: #aaaaaa;
 }
 .disabled {
     color: #aaaaaa;
     cursor: ar;
     button{
+        
         color: #aaaaaa;
     }
   }

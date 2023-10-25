@@ -5,6 +5,7 @@ import { ChartsComponent } from './charts/charts.component';
 import { MarkAttendanceComponent } from './mark-attendance/mark-attendance.component';
 import { AddStudentComponent } from './add-student/add-student.component';
 import { EditComponent } from './edit/edit.component';
+import { AttendanceRecordComponent } from './attendance-record/attendance-record.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     component:EditComponent,
     path:"edit/:id"
+  },
+  {
+    component:AttendanceRecordComponent,
+    path:"attendance-record/:id"
   }
 ];
 

@@ -15,11 +15,6 @@
                 <input type="text" formControlName="studentName"
                     class="form-control ng-untouched ng-pristine ng-invalid">
                 <!---->
-
-                <!-- <div *ngIf="studentInput.get('studentName')?.hasError('required') &&studentInput.get('studentName')?.touched">
-                    <p>Please enter student name</p>
-                </div> -->
-
                 <div *ngIf="studentInput.get('studentName')?.invalid && ( studentInput.get('studentName')?.touched)">
                     <div *ngIf="studentInput.get('studentName')?.hasError('required')">
                         <p>Please enter a student name</p>

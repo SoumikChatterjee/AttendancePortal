@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
+import { Router } from '@angular/router';
+import {MatPaginatorModule} from '@angular/material/paginator';
 interface studentInterface {
   name: string;
   id: string;
@@ -11,13 +13,15 @@ interface studentInterface {
   templateUrl: './student-list.component.html',
   styleUrls: ['./student-list.component.scss'],
   standalone: true,
-  imports: [MatTableModule],
+  imports: [MatTableModule,
+    MatPaginatorModule
+  ]
 })
 export class StudentListComponent {
   dataSource:Array<studentInterface>
   displayedColumns: string[] = ['id','name', 'email', 'number','action'];
   row="-1"
-  constructor()
+  constructor(private router:Router)
   {
     this.getStudents();
 
@@ -40,5 +44,11 @@ export class StudentListComponent {
     response=await fetch(`https://6537e9dfa543859d1bb10641.mockapi.io/students`);
     this.dataSource=await response.json();
   }
-
+  edit(id: string) {
+    this.router.navigate(["edit", id]);
+  }
+  view(id:string)
+  {
+    this.router.navigate(["attendance-record", id]);   
+  }
 }

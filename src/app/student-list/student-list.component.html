@@ -6,6 +6,7 @@
           The actual rendered columns are set as a property on the row definition" -->
   
     <!-- Position Column -->
+
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Name </th>
       <td mat-cell *matCellDef="let element" [class.disabled]="row===element.id"> {{element.name}} </td>
@@ -31,13 +32,12 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef> Action </th>
       <td mat-cell *matCellDef="let element" [class.disabled]="row===element.id">
-        <button [disabled]="row === element.id"><i class="fa-solid fa-trash" (click)="deleteItem(element.id)"></i></button>
-        <!-- <button [disabled]="row === element.id"><a >Edit</a></button> -->
+        <button [disabled]="row === element.id" id="delete" (click)="deleteItem(element.id)"><i class="fa-solid fa-trash" ></i></button>
+        <button [disabled]="row === element.id" (click)="edit(element.id)"><i class="far fa-edit"></i></button>
+        <button [disabled]="row === element.id" (click)="view(element.id)">View</button>
       </td>
     </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  
-  

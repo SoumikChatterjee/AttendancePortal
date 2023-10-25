@@ -14,6 +14,8 @@ import { MarkAttendanceComponent } from './mark-attendance/mark-attendance.compo
 import { ChartsComponent } from './charts/charts.component';
 import {MatTableModule} from '@angular/material/table';
 import { EditComponent } from './edit/edit.component';
+import { AttendanceRecordComponent } from './attendance-record/attendance-record.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +24,7 @@ import { EditComponent } from './edit/edit.component';
     MarkAttendanceComponent,
     ChartsComponent,
     EditComponent,
+    AttendanceRecordComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import { EditComponent } from './edit/edit.component';
     MatButtonModule,
     MatSidenavModule,
     ReactiveFormsModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
