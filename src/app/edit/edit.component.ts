@@ -85,13 +85,7 @@ export class EditComponent implements OnInit {
       if (this.roo)
         this.roo.navigate(['student-list'])
       this.as.pointer = 1;
-
-
       alert('Student updated successfully.');
-
     }
   }
-
-
-
 }

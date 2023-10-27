@@ -16,6 +16,11 @@ import {MatTableModule} from '@angular/material/table';
 import { EditComponent } from './edit/edit.component';
 import { AttendanceRecordComponent } from './attendance-record/attendance-record.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatRadioModule } from '@angular/material/radio';
+import { ChartModule } from 'primeng/chart';
+import { TableModule } from 'primeng/table';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,8 +40,13 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     ReactiveFormsModule,
     MatTableModule,
     MatPaginatorModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule,
+    ChartModule,
+    TableModule
   ],
-  providers: [],
+  providers: [  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

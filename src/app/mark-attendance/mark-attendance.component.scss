@@ -1,0 +1,17 @@
+#date{
+    // background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    input{
+        border: none;
+        background: transparent;
+        outline: none;
+    }
+    border: 1px solid #dee2e6;
+    border-radius: 7px;
+    height: 3.5vw;
+}
+p{
+    color: red;
+}

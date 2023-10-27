@@ -1,1 +1,51 @@
-<p>mark-attendance works!</p>
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-lg-12 mt-4">
+            <h1 style="text-align: center; color: black;">Mark Attendance Form</h1>
+        </div>
+    </div>
+    <form [formGroup]="studentInput">
+        <div class="row mt-4" style="display: flex; flex-direction: column; align-content: center;">
+            <div class="col-lg-10 mt-4">
+                <label for="" style="color: black;">Student ID</label>
+                <input type="number" formControlName="studentId" class="form-control">
+                <div *ngIf="studentInput.get('studentId')?.invalid && (studentInput.get('studentId')?.touched)">
+                    <div *ngIf="studentInput.get('studentId')?.hasError('required')">
+                        <p>Please enter a student ID</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-10 mt-4">
+                <label for="" style="color: black;">Date</label>
+                <div id="date" >
+                    <input type="text" formControlName="date" class="form-control" [matDatepicker]="picker" />
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+
+                </div>
+
+                <div *ngIf="studentInput.get('date')?.invalid && (studentInput.get('date')?.touched)">
+                    <div *ngIf="studentInput.get('date')?.hasError('required')">
+                        <p>Please enter a date</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-10 mt-4">
+                <label style="color: black;">Attendance Status</label>
+                <div style="display: inline-block;">
+                    <mat-radio-group formControlName="attendance">
+                        <mat-radio-button color="primary" value="Absent">Absent</mat-radio-button>
+                        <mat-radio-button color="primary" value="Present">Present</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row mt-3">
+        <div class="col-lg-12" style="text-align: center;">
+            <button class="btn btn-primary" (click)="buttonPressed()" [disabled]="!studentInput.valid">Submit</button>
+        </div>
+    </div>
+</div>
