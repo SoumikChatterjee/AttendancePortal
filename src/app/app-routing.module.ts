@@ -6,6 +6,7 @@ import { MarkAttendanceComponent } from './mark-attendance/mark-attendance.compo
 import { AddStudentComponent } from './add-student/add-student.component';
 import { EditComponent } from './edit/edit.component';
 import { AttendanceRecordComponent } from './attendance-record/attendance-record.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     component:AttendanceRecordComponent,
     path:"attendance-record/:id"
+  },
+  {
+    component:WelcomeComponent,
+    path:""
   }
 ];
 

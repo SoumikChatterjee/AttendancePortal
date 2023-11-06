@@ -8,7 +8,10 @@
         <div class="row mt-4" style="display: flex; flex-direction: column; align-content: center;">
             <div class="col-lg-10 mt-4">
                 <label for="" style="color: black;">Student ID</label>
-                <input type="number" formControlName="studentId" class="form-control">
+                <select formControlName="studentId" class="form-control" id="drpdownm">
+                    <option value="">Select ID</option>
+                    <option *ngFor="let student of data" [value]="student.id">{{ student.name }}-{{student.id}}</option>
+                </select>
                 <div *ngIf="studentInput.get('studentId')?.invalid && (studentInput.get('studentId')?.touched)">
                     <div *ngIf="studentInput.get('studentId')?.hasError('required')">
                         <p>Please enter a student ID</p>
@@ -18,7 +21,7 @@
 
             <div class="col-lg-10 mt-4">
                 <label for="" style="color: black;">Date</label>
-                <div id="date" >
+                <div id="date">
                     <input type="text" formControlName="date" class="form-control" [matDatepicker]="picker" />
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>

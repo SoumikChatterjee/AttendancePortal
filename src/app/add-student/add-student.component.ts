@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms'
 import { Router } from '@angular/router';
 import { ActiveService } from '../active.service';
 import { Validators } from '@angular/forms';
+import { ApiService } from '../services/api.service';
 @Component({
   selector: 'app-add-student',
   templateUrl: './add-student.component.html',
@@ -16,8 +17,8 @@ export class AddStudentComponent implements OnInit {
     email: '',
     phone: 0
   };
-
-  constructor(private fb: FormBuilder, private roo: Router, private as: ActiveService) {
+  students: any;
+  constructor(private fb: FormBuilder, private roo: Router, private as: ActiveService, private api: ApiService) {
 
   }
   ngOnInit(): void {
@@ -28,18 +29,18 @@ export class AddStudentComponent implements OnInit {
       phoneNumber: this.fb.control('', [Validators.required, Validators.pattern('[0-9]+'), Validators.minLength(10), Validators.maxLength(10)])
     });
 
+    this.api.getAllStudentDetails().subscribe(data => {
+      this.students = data;
+    })
 
   }
   async buttonPressed() {
-
-    let response = await fetch(`https://6537e9dfa543859d1bb10641.mockapi.io/students`);
-    const students = await response.json();
     this.newStudent.name = this.studentInput.value.studentName
     this.newStudent.email = this.studentInput.value.studentEmail
     this.newStudent.phone = Number(this.studentInput.value.phoneNumber)
 
-    const existingEmail = students.find((s: any) => s.email === this.newStudent.email);
-    const existingPhone = students.find((s: any) => s.phone === this.newStudent.phone);
+    const existingEmail = this.students.find((s: any) => s.email === this.newStudent.email);
+    const existingPhone = this.students.find((s: any) => s.phone === this.newStudent.phone);
 
     if (existingEmail || existingPhone) {
       alert('Email or phone number is already taken.');
@@ -52,19 +53,19 @@ export class AddStudentComponent implements OnInit {
 
       console.log(this.newStudent);
 
-      response = await fetch(`https://6537e9dfa543859d1bb10641.mockapi.io/students`, {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(this.newStudent)
+      this.api.postStudentData(this.newStudent).subscribe((response: any) => {
+        console.log(response);
+        this.api.StudentDataFlag = false;
+        
+        if (this.roo)
+          this.roo.navigate(['student-list'])
+        this.as.pointer = 1;
+
+
+        alert('Student added successfully.');
       });
-      if (this.roo)
-        this.roo.navigate(['student-list'])
-      this.as.pointer = 1;
 
 
-      alert('Student added successfully.');
     }
 
 

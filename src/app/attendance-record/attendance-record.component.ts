@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ApiService } from '../services/api.service';
+import { ActiveService } from '../active.service';
 interface record {
   date: string,
   pid: [string],
@@ -12,27 +14,27 @@ interface record {
 })
 export class AttendanceRecordComponent implements OnInit {
 
-  constructor(private ar: ActivatedRoute) {
-    this.fetchData();
+  constructor(private ar: ActivatedRoute,private api:ApiService,private as:ActiveService) {  
+    as.pointer=-1;
   }
+  
   data: Array<record> | null;
 
   id: string | null
    ngOnInit(): void {
     this.id = this.ar.snapshot.paramMap.get('id')
-
+    this.api.getAllStudentRecord().subscribe(data=>{
+      this.data=data;
+      this.sortData();
+    })
   }
-  async fetchData() {
-    const response = await fetch('https://6537e9dfa543859d1bb10641.mockapi.io/record')
-    this.data = await response.json();
-    console.log(this.data);
+  async sortData() {
+
     this.data?.sort((a, b) => {
       let dateA = new Date(a.date.split("/").reverse().join("-"));
       let dateB = new Date(b.date.split("/").reverse().join("-"));
-
       return dateA.getTime() - dateB.getTime();
     });
-
   }
   checkPresent(date: string) {
     const RecordObj = this.data?.find((i) => i.date === date);
@@ -43,5 +45,8 @@ export class AttendanceRecordComponent implements OnInit {
     else {
       return "Present";
     }
+  }
+  ngOnDestroy() {
+    this.as.pointer=1;
   }
 }

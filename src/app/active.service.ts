@@ -5,6 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class ActiveService {
 
-  pointer=1
+  pointer=-1
   constructor() { }
 }

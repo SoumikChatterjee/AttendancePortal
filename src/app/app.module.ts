@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +21,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { ChartModule } from 'primeng/chart';
 import { TableModule } from 'primeng/table';
+import { WelcomeComponent } from './welcome/welcome.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { TableModule } from 'primeng/table';
     ChartsComponent,
     EditComponent,
     AttendanceRecordComponent,
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ import { TableModule } from 'primeng/table';
     MatNativeDateModule,
     MatRadioModule,
     ChartModule,
-    TableModule
+    TableModule,
+    HttpClientModule
   ],
   providers: [  ],
   bootstrap: [AppComponent]

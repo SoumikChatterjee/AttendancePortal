@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../services/api.service';
 interface record {
   date: string,
   pid: [string],
@@ -13,15 +14,18 @@ export class ChartsComponent implements OnInit {
 
   data: Array<record> | null;
   basicData: any;
-  constructor(){
-
-  }
+  constructor(private api:ApiService){ }
   ngOnInit(): void {
-      this.chart();
+      this.api.getAllStudentRecord().subscribe(data=>{
+        this.data=data;
+        console.log(data);
+        
+        this.sortData();
+        this.chart();
+      })
   }
   basicOptions: any;
   async chart() {
-    await this.fetchData();
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
     const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
@@ -71,14 +75,11 @@ export class ChartsComponent implements OnInit {
       }
     };
   }
-  async fetchData() {
-    const response = await fetch('https://6537e9dfa543859d1bb10641.mockapi.io/record')
-    this.data = await response.json();
-    console.log(this.data);
+ sortData() {
+
     this.data?.sort((a, b) => {
       let dateA = new Date(a.date.split("/").reverse().join("-"));
       let dateB = new Date(b.date.split("/").reverse().join("-"));
-
       return dateA.getTime() - dateB.getTime();
     });
 
